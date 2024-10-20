@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banker Dashboard</title>
+    <script type="module" src="config.js"></script>
+    <script type="module" src="banker.js"></script>
+    
+    <link rel="stylesheet" href="banker.css">
+   
+</head>
+
+<body>
+
+
+    <!-- Main Menu (initially hidden) -->
+    <div id="mainMenuContainer">
+        <header>
+            <h1>Banker Dashboard</h1>
+
+        </header>
+
+        <main>
+            <section id="features">
+                <button id="createBank">Create New Bank</button>
+                <button id="addManager">Add Manager</button>
+                <button id="viewBanks">View All Banks</button>
+                <button id="openBank">Open Existing Bank</button>
+                <button id="removeManager">Remove Manager</button>
+                <button id="removeBank">Remove Bank</button>
+            </section>
+
+            <div id="formContainer" style="margin-top: 20px; width: 100%;">
+                <!-- Create Bank Form -->
+                <div id="createBankForm" class="form" style="display: none;">
+                    <h2>Create New Bank</h2>
+                    <label for="bankName">Bank Name:</label>
+                    <input type="text" id="bankName" name="bankName" required>
+
+                    <label for="currencyOfBank">Currency of Bank:</label>
+                    <input type="text" id="currancyofbank" name="currencyOfBank" required>
+
+                    <label for="bankFunds">Add Funds to Bank:</label>
+                    <input type="number" id="bankfunds" name="bankFunds" required>
+
+                    <button type="submit" id="create">Create Bank</button>
+                    <div id="createBankResponse" class="response"></div>
+                </div>
+
+                <div id="addManagerForm" class="form" style="display: none;">
+                    <h2>Add Manager</h2>
+                    <label for="managerName">Manager Name:</label>
+                    <input type="text" id="managerName" name="managerName" required>
+                    <label for="bankId">Bank ID:</label>
+                    <input type="text" id="bankId" name="bankId" required>
+                    <label for="salary">salary of manager</label>
+                    <input type="number" id="salary" name="salary" required>
+                    <button type="submit" id="createmanager">Add Manager</button>
+
+                    <div class="managerId"></div>
+                    <div id="managerid" class="response"></div> <!-- Response Area -->
+
+
+                </div>
+
+
+
+                <!-- Open Existing Bank Form -->
+                <div id="openbankform" class="form">
+                    <h2>Open Existing Bank</h2>
+                    <label for="existingBankId">Bank ID:</label>
+                    <input type="text" id="existingBankId" name="existingBankId" required>
+                    <button type="button" id="obank" onclick="searchBankById()">Open Bank</button>
+                    <!-- Trigger the search -->
+
+                    <div id="openbanks" class="response">
+                        <p>Good morning dear bank owner, from here you can handle your bank</p>
+                    </div>
+                    <!-- Bank List Section (to display the searched bank) -->
+                <div id="bankList"></div>
+                </div>
+
+                
+
+
+                <!-- Bank Details Section -->
+                <div id="bankDetailsSection" class="form" style="display: none;">
+                    <h2>Bank Details</h2>
+                    <div id="bankList2"></div> <!-- Change from <ul> to <div> -->
+                </div>
+
+                <!-- Remove Manager Form -->
+                <div id="removeManagerForm" class="form" style="display: none;">
+                    <h2>Remove Manager</h2>
+                    <label for="managerId">Manager ID:</label>
+                    <input type="text" id="managerId" name="managerId" required>
+                    <button type="submit" id="delManager">Remove Manager</button>
+                    <div id="removedmanager" class="response"></div>
+                </div>
+
+                <!-- Remove Bank Form -->
+                <div id="removeBankForm" class="form" style="display: none;">
+                    <h2>Remove Existing Bank</h2>
+                    <label for="bankIdToRemove">Bank ID:</label>
+                    <input type="text" id="bankIdToRemove" name="bankIdToRemove" required>
+                    <button type="submit" id="delBank">Remove Bank</button>
+
+                    <div id="removedbank"></div>
+                </div>
+            </div>
+        </main>
+
+
+
+
+
+
+
+</body>
+
+
+</html>

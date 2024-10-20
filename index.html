@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vertual Bank</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
+      color: white;
+      margin: 0;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    h3 {
+      font-size: 1.8em;
+      margin-bottom: 40px;
+      color: #f0f0f0;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .character-button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: white;
+      background-color: #4e54c8;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .character-button:hover {
+      background-color: #8f94fb;
+      transform: scale(1.05);
+    }
+
+    /* Responsive styles */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5em;
+      }
+
+      h3 {
+        font-size: 1.5em;
+      }
+
+      .character-button {
+        font-size: 1em;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+  <h1>Welcome to the world of Vertual Banks</h1>
+  <h3>World's First E-Bank Market</h3>
+  <!-- Audio element -->
+  <!-- <button id="playAudioButton">Play Audio</button>
+<audio id="myAudio" src="your-audio-file.mp3"></audio> -->
+
+
+  <div class="button-container">
+    <button class="character-button" onclick="signup()">Signup</button>
+    <button class="character-button" onclick="login()">Login</button>
+  </div>
+  <br>
+  <br>
+   <!-- Audio element -->
+   <audio id="myAudio" controls>
+    <source src="welcomevoice.mp3" type="audio/mpeg">
+</audio>
+
+  <script src="index.js"></script>
+
+</body>
+ 
+
+    <script>
+
+      var audio = document.getElementById('myAudio');
+      window.addEventListener('load', function() {
+          audio.play().catch(function(error) {
+              console.error('Audio playback error:', error);
+          });
+      });
+    </script>
+
+</html>

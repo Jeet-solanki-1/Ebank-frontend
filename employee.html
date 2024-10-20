@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>employee Dashboard</title>
+    
+    <script type="module" src="config.js"></script>
+    <script type="module" src="employee.js"></script>
+  
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f9f9f9;
+
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #e0f7fa;
+            color: #00796b;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Main layout styles */
+        .container {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 20%;
+            background-color: #ffffff;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile {
+            margin-bottom: 20px;
+        }
+
+        .profile h2 {
+            margin: 0;
+            color: #00796b;
+        }
+
+        .profile-details {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e0f2f1;
+        }
+
+        /* Main content styles */
+        .main {
+            flex: 1;
+            padding: 15px;
+            background-color: #ffffff;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: left;
+        }
+
+        #headers {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Button styles */
+        .btn {
+            background-color: #80deea;
+            color: #00796b;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 10px;
+            width: 100%;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .header {
+            background-color: #e0f7fa;
+            /* Light cyan */
+            color: #00796b;
+            /* Dark teal */
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* Distribute items with space between them */
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+
+        }
+
+        #searchbar {
+            display: flex;
+            align-items: center;
+            width: 70%;
+            /* Set the width relative to the parent container */
+            max-width: 600px;
+            /* Ensure it doesn't exceed 500px on larger screens */
+            min-width: 200px;
+            /* Set a minimum width for smaller screens */
+
+            gap: 10px;
+            /* Add space between the input and search button */
+        }
+
+        #inputsearch {
+            width: 70%;
+            /* Set the width relative to the parent container */
+            max-width: 500px;
+            /* Ensure it doesn't exceed 500px on larger screens */
+            min-width: 200px;
+            /* Set a minimum width for smaller screens */
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+            /* Prevent padding from affecting width */
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            #inputsearch {
+                width: 80%;
+                /* Take more width on smaller screens */
+            }
+        }
+
+
+        #search {
+            padding: 8px 15px;
+            background-color: #80deea;
+            color: #00796b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        #search:hover {
+            background-color: #4dd0e1;
+        }
+
+        .viewaccounts {
+            padding: 10px 20px;
+            background-color: #80deea;
+            color: #00796b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .viewaccounts:hover {
+            background-color: #55def0;
+        }
+
+
+        
+.bank-box {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6); /* Subtle gradient */
+    border: 1px solid #ddd; /* Soft border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1), -3px -3px 8px rgba(255, 255, 255, 0.7); /* Subtle shadow for depth */
+    padding: 15px;
+    justify-content: center;
+    margin: 15px 0; /* Add some space between boxes */
+    color: #3a3a3a; /* Darker neutral color for text */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.bank-box:hover {
+    background: linear-gradient(145deg, #e0f7fa, #b2ebf2); /* Light cyan gradient on hover */
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2), -6px -6px 12px rgba(255, 255, 255, 0.8); /* More prominent shadow on hover */
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+.bank-box span {
+    font-weight: bold;
+    color: #5a5a5a; /* Slightly lighter than the box text */
+}
+
+.bank-box button {
+    background-color: #80deea;
+    border: none;
+    padding: 8px 12px;
+    color: #00796b;
+    font-weight: bold;
+    border-radius: 5px; /* Soft corners for button */
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.bank-box button:hover {
+    background-color: #55def0;
+}
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>World of JLSS</h1>
+        <div id="searchbar" class="form">
+            <input type="text" id="inputsearch" name="inputsearch" placeholder="Enter bank name" required>
+            <button id="search" type="button"  onclick="searchBankbyname()">Search</button>
+          
+        </div>
+        <button class="viewaccounts" id="seeacounts" onclick="opneaccounts">Your accounts</button>
+        <button class="viewaccounts" id="checkbalance" onclick="opencheckform">Check balanace</button>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile" id="profilesection">
+                <h2>Profile Details</h2>
+                <div class="profile-details" id="profilelist">
+                    <!-- Profile details go here -->
+                </div>
+                <button class="btn" onclick="setProfile()">Set Profile</button>
+            </div>
+            <button class="btn" onclick="goToSettings()">Settings</button>
+            <button class="btn" onclick="logOut()">Log Out</button>
+        </div>
+
+        <div class="main">
+            <h2>Main displaye</h2>
+            <div id="bankList3"></div>
+
+        </div>
+
+       
+           
+           
+        <div id="bankList"></div>
+        </div>
+
+
+
+
+    </div>
+
+    <script>
+        function setProfile() {
+            // Implement profile setting logic here
+            alert('Setting profile...');
+        }
+
+        function goToSettings() {
+            // Implement settings navigation logic here
+            alert('Redirecting to settings...');
+        }
+
+        function logOut() {
+            // Implement logout logic here
+            alert('Logging out...');
+        }
+    </script>
+
+    <script src="employee.js"></script>
+   
+    
+</body>
+
+</html>

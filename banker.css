@@ -1,0 +1,178 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9; /* Light background */
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    background-color: #e0f7fa; /* Light cyan */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #00796b; /* Dark teal */
+}
+
+#logout {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    background-color: #80deea; /* Light blue */
+    color: #00796b; /* Dark teal */
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#logout:hover {
+    background-color: #4dd0e1; /* Darker light blue on hover */
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+#features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+#profileFormContainer {
+    background-color: #fff; /* White */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    color: #00796b; /* Dark teal */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+    width: 80%; /* Set to less than full width */
+    padding: 12px 15px; /* Slightly increased padding for a better touch area */
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Rounded corners for a softer look */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+    font-size: 16px; /* Slightly larger font for better readability */
+    background: linear-gradient(135deg, #ffffff, #f9f9f9); /* Light gradient for the background */
+}
+
+/* Focus Effect for Inputs */
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus {
+    border-color: #00796b; /* Dark teal border on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5), 0 1px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    outline: none; /* Remove the default outline */
+}
+
+/* Placeholder Styling */
+input::placeholder {
+    color: #aaa; /* Lighter color for placeholders */
+    opacity: 0.8; /* Slightly transparent for a softer look */
+    font-style: italic; /* Italicize placeholder text */
+}
+
+button {
+    width: auto; /* Set width to auto instead of full width */
+    padding: 10px 20px;
+    background-color: #80deea; /* Light blue */
+    color: #00796b; /* Dark teal */
+    border: none;
+    display: block;
+    margin-top: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s, transform 0.2s; /* Smooth transition for background color and transform */
+}
+
+button:hover {
+    background-color: #4dd0e1; /* Darker light blue on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+#profileResponse {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Container for bank boxes */
+#bankList {
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically (if needed) */
+    margin: 20px; /* Add margin around the container */
+}
+/* Container for bank boxes */
+#bankList2 {
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically (if needed) */
+    margin: 20px; /* Add margin around the container */
+}
+.bank-box {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6); /* Subtle gradient */
+    border: 1px solid #ddd; /* Soft border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1), -3px -3px 8px rgba(255, 255, 255, 0.7); /* Subtle shadow for depth */
+    padding: 15px;
+    justify-content: center;
+    margin: 15px 0; /* Add some space between boxes */
+    color: #3a3a3a; /* Darker neutral color for text */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.bank-box:hover {
+    background: linear-gradient(145deg, #e0f7fa, #b2ebf2); /* Light cyan gradient on hover */
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2), -6px -6px 12px rgba(255, 255, 255, 0.8); /* More prominent shadow on hover */
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+.bank-box span {
+    font-weight: bold;
+    color: #5a5a5a; /* Slightly lighter than the box text */
+}
+
+.bank-box button {
+    background-color: #4dd0e1; /* Vibrant orange button */
+    border: none;
+    padding: 8px 12px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px; /* Soft corners for button */
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.bank-box button:hover {
+    background-color: #1ea3b4; /* Darker orange on hover */
+}

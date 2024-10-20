@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <script type="module" src="config.js"></script>
+    <script type="module" src="user.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f9f9f9;
+
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #e0f7fa;
+            color: #00796b;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Main layout styles */
+        .container {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 20%;
+            background-color: #ffffff;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        #showpro{
+            display: none;
+        }
+
+        .profile {
+            margin-bottom: 20px;
+        }
+
+        .profile h2 {
+            margin: 0;
+            color: #00796b;
+        }
+
+        .profile-details {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e0f2f1;
+        }
+
+        /* Main content styles */
+        .main {
+            flex: 1;
+            padding: 15px;
+            background-color: #ffffff;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: left;
+        }
+
+        #headers {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Button styles */
+        .btn {
+            background-color: #80deea;
+            color: #00796b;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 10px;
+            width: 100%;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        /* Header styles */
+        #headers {
+            background-color: #e0f7fa;
+            color: #00796b;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            /* Needed for the menu toggle button on small screens */
+        }
+
+        /* Heading style */
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Search bar styles */
+        #searchbar {
+            display: flex;
+            align-items: center;
+            width: 70%;
+            max-width: 600px;
+            min-width: 200px;
+            gap: 10px;
+        }
+
+        /* Input field styling */
+        #inputsearch {
+            width: 70%;
+            max-width: 500px;
+            min-width: 200px;
+          
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        /* Hamburger menu button (for small screens) */
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #00796b;
+        }
+
+        /* Navigation menu */
+        .navbar {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Navigation links styling */
+        .navbar a {
+            color: #00796b;
+            text-decoration: none;
+            padding: 10px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #004d40;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+
+            /* On small screens, hide the full menu and show the hamburger button */
+            .navbar {
+                display: none;
+                flex-direction: column;
+                background-color: #ffffff;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Show the hamburger button */
+            .hamburger {
+                display: block;
+            }
+
+            /* Show the navigation menu when the hamburger is clicked */
+            .navbar.active {
+                display: flex;
+            }
+
+            /* Adjust search bar width on smaller screens */
+            #searchbar {
+                width: 100%;
+                justify-content: center;
+                padding: 0 10px;
+            }
+
+            #inputsearch {
+                width: 100%;
+            }
+        }
+
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            #inputsearch {
+                width: 80%;
+                left: 0px;
+                /* Take more width on smaller screens */
+            }
+            #sidebarpro{
+                display: none;
+            }
+            #showpro{
+                display: block;
+                position: relative;
+
+            }
+        }
+
+
+        #search {
+            padding: 8px 15px;
+            background-color: #80deea;
+            color: #00796b;
+            border: none;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        #search:hover {
+            background-color: #4dd0e1;
+        }
+
+        .viewaccounts {
+            padding: 10px 20px;
+            background-color: #80deea;
+            color: #00796b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .viewaccounts:hover {
+            background-color: #55def0;
+        }
+
+
+
+        .bank-box {
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            /* Subtle gradient */
+            border: 1px solid #ddd;
+            /* Soft border */
+            border-radius: 10px;
+            /* Rounded corners */
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1), -3px -3px 8px rgba(255, 255, 255, 0.7);
+            /* Subtle shadow for depth */
+            padding: 15px;
+            justify-content: center;
+            margin: 15px 0;
+            /* Add some space between boxes */
+            color: #3a3a3a;
+            /* Darker neutral color for text */
+            transition: all 0.3s ease-in-out;
+            /* Smooth transition for hover effects */
+        }
+
+        .bank-box:hover {
+            background: linear-gradient(145deg, #e0f7fa, #b2ebf2);
+            /* Light cyan gradient on hover */
+            box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.2), -6px -6px 12px rgba(255, 255, 255, 0.8);
+            /* More prominent shadow on hover */
+            transform: translateY(-5px);
+            /* Slight lift on hover */
+        }
+
+        .bank-box span {
+            font-weight: bold;
+            color: #5a5a5a;
+            /* Slightly lighter than the box text */
+        }
+
+        .bank-box button {
+            background-color: #80deea;
+            border: none;
+            padding: 8px 12px;
+            color: #00796b;
+            font-weight: bold;
+            border-radius: 5px;
+            /* Soft corners for button */
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .bank-box button:hover {
+            background-color: #55def0;
+        }
+    </style>
+    <style>
+        /* Style for the create account section */
+        #createaccount {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            display: none;
+        }
+
+        /* General form styles */
+        .form {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #00796b;
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+     #accnumber{
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .accbtns {
+            background-color: #80deea;
+            color:  #0a6976;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            width: 100%;
+        }
+
+        .accbtns:hover {
+            background-color: #0894a6d6;
+            color: white;
+        }
+
+        .response {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e0f7fa;
+            border-left: 4px solid #00796b;
+            color: #00796b;
+            font-size: 14px;
+        }
+
+        /* Specific form sections */
+        #createaccountform,
+        #bankvarify,
+        #addaccountdetails,
+        #openexistingaccform {
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #createnewacc,
+        #openexistingacc {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #80deea;
+            color: #00796b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #createnewacc:hover,
+        #openexistingacc:hover {
+            background-color: #4dd0e1;
+        }
+
+        /* Styling for welcome form */
+        #welcomeform {
+            text-align: center;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Adjust button margins */
+        button {
+            margin-bottom: 10px;
+        }
+    </style>
+
+
+    <style>
+        /* General form and button styling */
+        #insideoperations {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    
+        #Gretings {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+    
+        .accbtns {
+            background-color: #48c7d7;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            border-radius: 5px;
+            margin: 10px 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            width: 45%;
+        }
+    
+        .accbtns:hover {
+            background-color: #146475;
+        }
+    
+        .operation-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+    
+        .operation-form h3 {
+            text-align: center;
+            color: #444;
+        }
+    
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+    
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+    
+        button[type="submit"] {
+            background-color: #2196F3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+    
+        button[type="submit"]:hover {
+            background-color: #1E88E5;
+        }
+    </style>
+
+    <link rel="stylesheet" href="waiting.css">
+</head>
+
+<body>
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="pulse"></div>
+        <div class="circle"></div>
+        <div class="dots"></div>
+        <div class="text">We are setting things up for you...</div>
+
+    </div>
+
+    <div class="header">
+        <h1>World of JLSS</h1>
+        <div id="searchbar">
+            <input type="text" id="inputsearch" name="inputsearch" placeholder="Enter bank name" required>
+            <button id="search" type="button" onclick="searchBankbyname()">Search</button>
+
+        </div>
+        <button class="viewaccounts" id="showpro" onclick="showsidebar()">🧑‍💼</button>
+        <button class="viewaccounts" id="seeacounts" onclick="opneaccounts()">Your accounts</button>
+        <button class="viewaccounts" id="checkbalance" onclick="opencheckform()">Check transactions</button>
+   
+    </div>
+
+    <div class="container">
+      
+            <div class="sidebar" id="sidebarpro">
+                <div class="profile" id="profilesection">
+                    <h2>Profile Details</h2>
+                    <div class="profile-details" id="profilelist">
+                        <!-- Profile details go here -->
+                    </div>
+                    <button class="btn" onclick="setProfile()">Set Profile</button>
+                </div>
+                <button class="btn" onclick="goToSettings()">Settings</button>
+                <button class="btn" onclick="logOut()">Log Out</button>
+            </div>
+        
+      
+
+        <div class="main" id="main" >
+            <audio id="myAudio" controls class="form">
+                <source src="userwelcome.mp3" type="audio/mpeg">
+            </audio>
+            <h4 class="form" style="color: #747c88; text-decoration: none;">Tap to the user guide to see features of App
+            </h4>
+            <a href="userguide.html" class="form" style="color: #14656e; text-decoration: none;" s>User guide</a>
+            <div id="resultof" class="form" style="color: #747c88; text-decoration: none;"></div>
+            <div id="bankList3" class="form"></div>
+
+
+            <div id="createaccount" class="form" style="display: none;">
+
+                <div class="form" id="welcomeform" style="display: none;">
+                    <h2 id="Welcome"></h2>
+                    <button id="createnewacc" class="accbtns">Create New account</button>
+                    <button id="openexistingacc" class="accbtns">Open existing account</button>
+                </div>
+
+
+                <div id="createaccountform" class="form" style="display: none;">
+                    <h2>Create New account</h2>
+                    <label for="mobileno">Enter mobileno:</label>
+                    <input type="number" id="mobileno" name="mobile" required>
+
+
+                    <button type="submit" class="accbtns" id="go">Submit</button>
+                    <div id="creatnewaccResponse" class="response"></div>
+                </div>
+
+                <div id="bankvarify" class="form" style="display: none;">
+                    <h2>We just sent you a varification code of our bank please varify it</h2>
+                    <label for="code">Enter code:</label>
+                    <input type="number" id="code" name="code" required>
+
+
+                    <button type="submit" class="accbtns" id="varify">varify</button>
+                    <div id="successmeasage" class="response"></div>
+                </div>
+
+                <div id="addaccountdetails" class="form" style="display: none;">
+                    <h2>Create account</h2>
+                    <label for="name">Enter name for account:</label>
+                    <input type="text" id="name" name="name" required>
+
+
+                    <label for="name">Enter account type:</label>
+                    <input type="text" id="type" name="type" required>
+
+                    <label for="balanace">Add initial balance:</label>
+                    <input type="number" id="balanace" name="balanace" required>
+
+                    <label for="password">Set password :</label>
+                    <input type="number" id="password" name="password" required>
+
+
+
+                    <button type="submit" class="accbtns" id="generate">create</button>
+                    <div id="mess" class="response"></div>
+                </div>
+
+
+
+
+                <div id="openexistingaccform" class="form" style="display: none;">
+                    <h2>Open existing account</h2>
+                    <label for="bankName">Bank Name:</label>
+                    <input type="text" id="bankName" name="bankName" required>
+
+                    <label for="currencyOfBank">Currency of Bank:</label>
+                    <input type="text" id="currancyofbank" name="currencyOfBank" required>
+
+                    <label for="bankFunds">Add Funds to Bank:</label>
+                    <input type="number" id="bankfunds" name="bankFunds" required>
+
+                    <button type="submit" class="accbtns" id="open">open</button>
+                    <div id="createopenResponse" class="response"></div>
+                </div>
+
+
+
+
+
+            </div>
+
+            <div id="seeyouraccountsacounts" class="form" style="display: none;">
+                <h3 >Your accounts </h3>
+                <p id="well"></p>
+                <div id="accountlist"></div>
+
+
+
+            </div>
+
+            <div id="bankoperations" class="form" style="display: none;">
+                <h3>Cheack transactions </h3>
+
+               
+                    <label for="accnumber">Enter account number:</label>
+                    <input type="accnumber" id="accnumber" name="accnumber" required>
+
+                    <button type="submit" class="accbtns" id="checkballofacc">check</button>
+                    <div id="createopenResponse2" class="response"></div>
+
+
+
+            </div>
+            <div id="insideoperations" class="form" style="display: none;">
+                <h2 id="Gretings"></h2>
+            
+                <!-- New Banking Operation Buttons -->
+                <button id="credit" class="accbtns" onclick="showForm('creditForm')">Credit</button>
+                <button id="debit" class="accbtns" onclick="showForm('debitForm')">Debit</button>
+                <button id="transfer" class="accbtns" onclick="showForm('transferForm')">Transfer Funds</button>
+                <button id="loan" class="accbtns" onclick="showForm('loanForm')">Take Loan</button>
+                <button id="payloan" class="accbtns" onclick="showForm('payLoanForm')">Pay Loan</button>
+                <button id="insurance" class="accbtns" onclick="showForm('insuranceForm')">Insurance</button>
+            
+                <!-- Forms for each operation -->
+                <div id="creditForm" class="operation-form" style="display: none;">
+                    <h3>Credit money</h3>
+                    <label for="creditAmount">Amount:</label>
+                    <input type="number" id="creditAmount" name="creditAmount"><br>
+                    
+                    <label for="creditPassword">Enter Password:</label>
+                    <input type="password" id="creditPassword" name="creditPassword"><br>
+                    <a href="newpassword.html" class="forgot-password">Forgot Password?</a><br>
+                    
+                    <button type="submit" onclick="operate('credittype')">Submit</button>
+                    <div id="credited" class="response"></div>
+
+                </div>
+            
+                <div id="debitForm" class="operation-form" style="display: none;">
+                    <h3>Debit money</h3>
+                    <label for="debitAmount">Amount:</label>
+                    <input type="number" id="debitAmount" name="debitAmount"><br>
+                    
+                    <label for="debitPassword">Enter Password:</label>
+                    <input type="password" id="debitPassword" name="debitPassword"><br>
+                    <a href="newpassword.html" class="forgot-password">Forgot Password?</a><br>
+                    
+                    <button type="submit" onclick="operate('debittype')">Submit</button>
+                    <div id="debited" class="response"></div>
+                </div>
+            
+                <div id="transferForm" class="operation-form" style="display: none;">
+                    <h3>Transfer Funds</h3>
+                    <label for="transferTo">Transfer To:</label>
+                    <input type="text" id="transferTo" name="transferTo"><br>
+                    
+                    <label for="transferAmount">Amount:</label>
+                    <input type="number" id="transferAmount" name="transferAmount"><br>
+                    
+                    <label for="transferPassword">Enter Password:</label>
+                    <input type="password" id="transferPassword" name="transferPassword"><br>
+                    <a href="newpassword.html" class="forgot-password">Forgot Password?</a><br>
+                    
+                    <button type="submit" onclick="operate('transfer')">Submit</button>
+                </div>
+            
+                <div id="loanForm" class="operation-form" style="display: none;">
+                    <h3>Take Loan</h3>
+                    <label for="loanAmount">Amount:</label>
+                    <input type="number" id="loanAmount" name="loanAmount"><br>
+                    
+                    <label for="loanPurpose">Purpose:</label>
+                    <input type="text" id="loanPurpose" name="loanPurpose"><br>
+                    
+                    <label for="loanPassword">Enter Password:</label>
+                    <input type="password" id="loanPassword" name="loanPassword"><br>
+                    <a href="newpassword.html" class="forgot-password">Forgot Password?</a><br>
+                    <button type="submit">Submit</button>
+                </div>
+            
+                <div id="payLoanForm" class="operation-form" style="display: none;">
+                    <h3>Pay Loan</h3>
+                    <label for="payLoanAmount">Amount:</label>
+                    <input type="number" id="payLoanAmount" name="payLoanAmount"><br>
+                    
+                    <label for="payLoanPassword">Enter Password:</label>
+                    <input type="password" id="payLoanPassword" name="payLoanPassword"><br>
+                    <a href="newpassword.html" class="forgot-password">Forgot Password?</a><br>
+                    
+                    <button type="submit">Submit</button>
+                </div>
+            
+                <div id="insuranceForm" class="operation-form" style="display: none;">
+                    <h3>Insurance</h3>
+                    <label for="insuranceType">Type of Insurance:</label>
+                    <input type="text" id="insuranceType" name="insuranceType"><br>
+                    
+                    <label for="insuranceAmount">Amount:</label>
+                    <input type="number" id="insuranceAmount" name="insuranceAmount"><br>
+                    
+                    <label for="insurancePassword">Enter Password:</label>
+                    <input type="password" id="insurancePassword" name="insurancePassword"><br>
+                    <a href="newpassword.html" class="forgot-password">Forgot Password?</a><br>
+                    
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+            
+            <script>
+                function showForm(formId) {
+                    // Hide all forms
+                    document.querySelectorAll('.operation-form').forEach(function(form) {
+                        form.style.display = 'none';
+                    });
+                    // Show the selected form
+                    document.getElementById(formId).style.display = 'block';
+                }
+            </script>
+            
+         
+
+
+        </div>
+
+
+
+
+        <div id="bankList"></div>
+    </div>
+
+
+
+
+    </div>
+    <script type="module">
+        import * as userFunctions from './user.js'; // Import all functions
+
+        document.getElementById('openAccountsButton').onclick = userFunctions.opneaccounts;
+        document.getElementById('searchBankButton').onclick = userFunctions.searchBankbyname;
+
+        // Add more button event listeners as needed...
+    </script>
+
+    <script>
+        function setProfile() {
+            // Implement profile setting logic here
+            alert('Setting profile...');
+        }
+
+        function goToSettings() {
+            // Implement settings navigation logic here
+            alert('Redirecting to settings...');
+        }
+
+        function logOut() {
+            // Implement logout logic here
+            alert('Logging out...');
+        }
+        var Boolean  = "true";
+
+        function showsidebar(){
+
+       
+            
+            if(Boolean){
+                document.getElementById("main").style.display = 'none';
+            document.getElementById("sidebarpro").style.display = 'block';
+            document.getElementById("sidebarpro").style.width = '80%';
+       
+            Boolean = false;
+
+            }else{
+                document.getElementById("main").style.display = 'block';
+            document.getElementById("sidebarpro").style.display = 'none';
+         
+           
+            Boolean = true;
+
+            }
+            
+
+       
+        }
+    </script>
+
+   
+
+
+</body>
+<script src="user.js"></script>
+</html>

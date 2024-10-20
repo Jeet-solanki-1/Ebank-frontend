@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Profile</title>
+   
+<script type="module" src="config.js"></script>
+<script type="module" src="profile.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            margin: 10px 0 5px;
+            display: block;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #4e54c8;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 1.1em;
+            color: white;
+            background-color: #4e54c8;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #8f94fb;
+            transform: scale(1.05);
+        }
+
+        #profileResponse {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #d9534f; /* Red color for error messages */
+        }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            button {
+                font-size: 1em;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+    
+    <h1>Create Profile</h1>
+    <p id="characterWelcome"></p> <!-- Added welcome message -->
+    <form id="profileForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        
+    
+        <label for="address">Address:</label>
+        <input type="text" id="address">
+        
+        <label for="city">City:</label>
+        <input type="text" id="city">
+        
+        <label for="state">State:</label>
+        <input type="text" id="state">
+        
+        <label for="zip">Zip:</label>
+        <input type="text" id="zip">
+        
+        <label for="country">Country:</label>
+        <input type="text" id="country">
+        
+        <button type="submit">Create Profile</button>
+    </form>
+    
+    <div id="profileResponse"></div>
+
+   
+</body>
+
+
+</html>

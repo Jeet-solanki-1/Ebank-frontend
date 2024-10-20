@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Character</title>
+
+  
+
+    <style>
+        /* General body styles */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #88a7fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Heading styles */
+        h1 {
+            color: #333;
+            margin-top: 50px;
+            font-size: 2rem;
+        }
+
+        /* Button container styles */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            /* Allow buttons to wrap on smaller screens */
+        }
+
+        /* Individual button styles */
+        .character-button {
+            background-color: #ffffff;
+            border: none;
+            color: rgb(0, 0, 0);
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            flex: 1 1 200px;
+            /* Allow buttons to shrink and grow */
+            max-width: 250px;
+            /* Set a max width for each button */
+        }
+
+        /* Button hover effect */
+        .character-button:hover {
+            background-color: #fca8a8;
+        }
+
+        /* Responsive styles for small screens */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+                /* Adjust heading size */
+            }
+
+            /* Adjust buttons to stack vertically on smaller screens */
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .character-button {
+                width: 80%;
+                /* Make buttons take up more width */
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.7rem;
+                margin-top: 30px;
+            }
+
+            /* Reduce button padding and font size for very small screens */
+            .character-button {
+                padding: 12px 24px;
+                font-size: 30px;
+               max-height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Select Your Character</h1>
+
+    <div class="button-container">
+        <button class="character-button" onclick="selectCharacter('banker')">Banker</button>
+        <button class="character-button" onclick="selectCharacter('user')">User</button>
+        <button class="character-button" onclick="selectCharacter('employee')">Employee</button>
+        <button class="character-button" onclick="selectCharacter('manager')">Manager</button>
+    </div>
+
+    <script>
+        function selectCharacter(charType) {
+            // Redirect to the registration  page based on character selection
+            console.log(charType);
+
+    window.location.href = `register.html?charType=${charType}`;
+
+            
+        }
+
+
+    </script>
+
+</body>
+
+</html>

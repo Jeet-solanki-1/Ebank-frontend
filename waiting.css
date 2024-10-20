@@ -1,0 +1,120 @@
+
+
+        
+/* Loading Animation Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(8, 45, 77, 0.666); /* Semi-transparent background */
+    z-index: 2; /* Above registration page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: rgba(6, 58, 65, 0.499); /* Light cyan */
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    border-top-color: #80deea; /* Dark teal */
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.dots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 10px;
+    height: 10px;
+    background-color:#80deea;
+    border-radius: 50%;
+    box-shadow: 
+        0px -45px 0 0px #80deea, 
+        32px -32px 0 0px #80deea, 
+        45px 0px 0 0px #80deea,
+        32px 32px 0 0px #80deea,
+        0px 45px 0 0px#80deea,
+        -32px 32px 0 0px #80deea,
+        -45px 0px 0 0px #80deea,
+        -32px -32px 0 0px #80deea;
+    animation: dotSpin 1.5s linear infinite;
+}
+
+@keyframes dotSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.text {
+    position: absolute;
+    top: 120%;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: #092131; /* Dark teal */
+    animation: fade 2s infinite;
+}
+
+@keyframes fade {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
