@@ -1,5 +1,5 @@
 // config.js
-const API_URL = 'https://947936be844e47cba93dbc114c99e22f.serveo.net'; // Replace with your actual backend URL
+const API_URL = 'https://d94f283f4052f4de872c54cd3341d83e.serveo.net'; // Replace with your actual backend URL
 
 
 
